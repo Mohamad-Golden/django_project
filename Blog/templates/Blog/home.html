@@ -1,0 +1,33 @@
+{% extends 'Blog/base.html' %}
+{% block content %}
+    <h1>Home page</h1>
+    {% for post in posts %}    
+        <div class="post">
+            <h2> <a style="color: black;" href="{% url 'blog-post' post.id %}">{{post.title}}</a></h2>
+            <p>{{post.content}}</p>
+            <a href="{% url 'blog-post-author' post.author %}">{{post.author}}</a>
+            <p>{{post.date_posted}}</p>
+        </div>
+    {% endfor %}
+
+    {% if is_paginated %}
+        {% if page_obj.has_previous %}
+            <a class="btn btn-outline-info" href="?page=1">First</a><span style="margin-left: 3px;">...</span>
+        {% endif %}
+        {% for num in paginator.page_range %}
+            {% if page_obj.number < num|add:"3" and page_obj.number > num %}
+                <a style="color: grey;" href="?page={{num}}">{{num}}</a>
+            {% endif %}
+            {% if num == page_obj.number %}
+                <a href="?page={{num}}">{{num}}</a>
+            {% endif %}
+            {% if page_obj.number > num|add:"-3" and page_obj.number < num %}
+                <a style="color: grey;" href="?page={{num}}">{{num}}</a>
+            {% endif %}
+        {% endfor %}
+        {% if page_obj.has_next %}
+            <span style="margin-right: 3px;">...</span><a class="btn btn-outline-info" href="?page={{paginator.num_pages}}">Last</a>
+        {% endif %}
+    {% endif %}
+
+{% endblock content %}

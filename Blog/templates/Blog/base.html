@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'Blog/main.css' %}">
+    <title>{{ page_name }}</title>
+</head> 
+<body>
+    <nav>
+        <div class="nav-title">BRAND NAME</div>
+        <div class="nav-button" onclick="func(this)" id="nav-button">
+            <span class="b-top"></span>
+            <span class="b-mid"></span>
+            <span class="b-buttom"></span>
+        </div>
+        <div class="nav-links">
+            <ul>
+                <li><a href="{% url 'blog-home' %}" class="nav_home">Home</a></li>
+                <li><a href="{% url 'blog-about' %}" class="nav_about">About</a></li>
+                {% if user.is_authenticated %}
+                <li><a href="{% url 'users-profile' %}" class="nav_about">Profile</a></li>
+                <li><a href="{% url 'blog-post-myposts' %}" class="nav_about">My posts</a></li>
+                <li><a href="{% url 'blog-post-resent' %}" class="nav_about">Recent posts</a></li>
+                <li><a href="{% url 'blog-post-create' %}" class="nav_about">New post</a></li>
+                <li><a href="{% url 'users-logout' %}" class="nav_about">Logout</a></li>
+                {% else %}
+                <li><a href="{% url 'blog-post-resent' %}" class="nav_about">Recent posts</a></li>
+                <li><a href="{% url 'users-register' %}" class="nav_about">Register</a></li>
+                <li><a href="{% url 'users-login' %}" class="nav_about">Login</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+    <div class="content profile">
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+    {% endif %}    
+    {% block content %}{% endblock %}
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="{% static 'Blog/main.js' %}"></script> 
+</body>
+</html>

@@ -1,0 +1,218 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: rgb(238, 238, 238);
+}
+
+::-webkit-scrollbar {
+    width: 15px;
+  }
+  
+/* Track */
+::-webkit-scrollbar-track {
+box-shadow: inset 0 0 7px grey; 
+border-radius: 10px;
+background-color: #eee;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+background: rgb(85, 85, 85); 
+border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+background: #727272; 
+}
+
+nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+    background-color: rgb(43, 43, 43);
+}
+
+.nav-title{
+    font-size: 1.6rem; 
+    margin: .6rem;
+}
+
+.nav-links ul{
+    display: flex;
+    margin: 0;
+}
+
+.nav-links li {
+    list-style-type: none;
+}
+
+.nav-links a{
+    display: block;
+    color: white;
+    text-decoration: none;
+    transition: all .4s ease;
+    padding: 1rem;
+}
+
+.nav-links a:hover{
+    background-color: lightgrey;
+    color: black;
+}
+
+.nav-button{
+    position: absolute;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    width: 3rem;
+    height: 3.55rem;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    transition: all .4s ease;
+    display: none;
+}
+
+.nav-button:hover{
+    background-color: lightgrey;
+}
+.nav-button:hover span{
+    background-color: black;
+}
+
+span{
+    background-color: white;
+    height: 1px;
+    margin: 3px 0;
+    width: 1.5rem;
+    transition: all .5s ease;
+}
+
+.nav-button.active .b-top{
+    transform: rotate(-45deg) translate(-5px,5px);
+}
+
+.nav-button.active .b-buttom{
+    transform: rotate(45deg) translate(-5px,-5px); 
+}
+
+.nav-button.active .b-mid{
+    opacity: 0;
+}
+
+
+@media screen and (max-width:650px) {
+    .nav-links{
+        display: none;
+        align-self: stretch;
+    }
+    .nav-button{
+        display: flex;
+    }
+    nav{
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .nav-links ul {
+        flex-direction: column;
+        width: 100%;
+    }
+    .nav-links.active{
+        display: flex;
+    }
+}
+
+
+a:hover{
+    text-decoration: none;
+}
+
+
+
+h1{
+    margin-bottom: 15px;
+}
+
+.content{
+    padding: 3vh 5vw;
+    background-color: white;
+    width: 1000px;
+    margin: 15px auto;
+    border-radius: 5px;
+    box-shadow: 0 0 7px 3px lightgrey;
+}
+
+
+li{
+    list-style-type: none;
+}
+
+.post{
+    padding: 15px;
+    border: 1px solid rgb(151, 151, 151);
+    border-radius: 3px;
+    box-shadow: 0 0 10px 0 lightgrey;
+    margin-bottom: 15px;
+}
+
+
+/* profile section */
+.profile_pic_container{
+    padding: 15px;
+    float: left;
+    width: 150px;
+    height: 150px;
+}
+
+.profile_pic{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    box-shadow: 0 0 4px 2px lightgrey,  0px 10px 4px -6px grey;
+}
+
+.profile_content{
+    margin-top: 20px;
+    padding: 15px;
+    float: left;
+    width: 70%;
+}
+
+.profile_content, .profile_pic::after{
+    display: table;
+    content: '';
+    clear: both;
+}
+
+form{
+    overflow: hidden;
+    padding: 2ch;
+}
+
+.username{
+    border-bottom: 1px solid lightgrey;
+    width:fit-content;
+}
+
+
+@media screen and (max-width:1000px) {
+    .content{
+        width: auto;
+        max-width: 650px;
+    }
+}
+
+.form-element{
+    margin-bottom: 2rem;
+}
+
+.error{
+    color: red;
+}

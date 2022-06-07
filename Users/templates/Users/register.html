@@ -1,0 +1,52 @@
+{% extends 'Blog/base.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+    <h1>Register Page</h1>
+    
+    <form method="POST">
+        {% csrf_token %}
+        <fieldset>
+            <legend>Join Today</legend>
+            {{form|crispy}}
+            <!-- <div class="form-element">
+                <label for="username">Username:</label>
+                <input id="username" name="username" type="text" name="username" placeholder="Enter a username"
+                {% if form.is_bound %} value="{{form.username.value}}" {% endif %}>
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}    
+            </div>
+            <div class="form-element">
+                <label for="email">Email:</label>
+                <input id="email" name="email" type="email" placeholder="Enter an email"
+                {% if form.is_bound %} value="{{form.email.value}}" {% endif %}>
+                {% for err in form.email.errors %}
+                    <small class="error">{{ err }}</small>
+                {% endfor %}
+            </div>
+            <div class="form-element">
+                <label for="pass">password</label>
+                <input id="pass" name="password1" type="password" placeholder="Enter a password">
+                {% for err in form.password1.errors %}
+                    <small class="error">{{ err }}</small>
+                {% endfor %}
+            </div>
+            <div class="form-element">
+                <input name="password2" type="password" placeholder="Confirm your password">
+                {% for err in form.password2.errors %}
+                    <small class="error">{{ err }}</small>
+                {% endfor %}
+            </div>
+            <label for="mybox">checke it plz</label>
+            <input id="mybox" type="checkbox" name="checking" value="done" checked>
+            <div class="form-element">-->
+                <button class="btn btn-outline-info" type="submit" name="register-user" value="done">Sign up</button>
+                <!-- <button class="btn btn-outline-info" type="submit" name="another-butt" value="another">another button</button> -->
+            </div> 
+        </fieldset>
+    </form>
+
+
+{% endblock content %}

@@ -1,0 +1,14 @@
+{% extends 'Blog/base.html' %}
+{% block content %}
+    <h1>Home page</h1>
+        <div class="post">
+            <h2>{{post.title}}</h2>
+            <p>{{post.content}}</p>
+            <p>{{post.author}}</p>
+            <p>{{post.date_posted}}</p>
+        </div>
+        {% if post.author == user %}
+            <a class="btn btn-outline-info" href="{% url 'blog-post-update' post.id %}">edit</a>
+            <a class="btn btn-outline-danger" href="{% url 'blog-post-delete' post.id %}">delete</a>
+        {% endif %}
+{% endblock content %}
