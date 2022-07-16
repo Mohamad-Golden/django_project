@@ -14,17 +14,14 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, reverse_lazy
 from django.conf import settings
 from django.conf.urls.static import static
-from django.contrib.auth.views import PasswordChangeView, PasswordChangeDoneView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('blog/', include('Blog.urls')),
-    path('', include('Users.urls')),
-    path('chpassword/', PasswordChangeView.as_view(template_name='Users/chpassword.html'), name='chpassword'),
-    path('chpassword/done', PasswordChangeDoneView.as_view(template_name='Users/chpassword-done.html'), name='change_password_done')
+    path('', include('Users.urls'))
 ]
 
 if settings.DEBUG:

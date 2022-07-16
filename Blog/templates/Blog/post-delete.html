@@ -4,7 +4,7 @@
     <form method="POST">
         {% csrf_token %}
         <fieldset>
-            <legend>Add post</legend>
+            <legend>Delete post</legend>
             <h1>Are you sure you want to delete post {{post.title}}?</h1>
             <button class="btn btn-outline-danger" type="submit">delete</button>
             <a href="{% url 'blog-post' post.id %}" class="btn btn-outline-secondary">cancel</a>

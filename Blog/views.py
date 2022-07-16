@@ -67,10 +67,6 @@ class PostDetail(DetailView):
     template_name = "Blog/post-detail.html"
     context_object_name = 'post'
     
-    # def get_object(self):
-    #     return Post.objects.get(title=self.kwargs['title'])
-    # in case you want to grab posts by title rather than pk
-
 
 class PostCreate(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     model = Post
@@ -100,7 +96,7 @@ class PostDelete(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Post
     context_object_name = 'post'
     template_name = 'Blog/post-delete.html'
-    success_url = "/"
+    success_url = reverse_lazy('blog-post-myposts')
 
     def test_func(self):
         if self.get_object().author == self.request.user:

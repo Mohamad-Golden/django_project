@@ -9,8 +9,7 @@ def timenow():
     return datetime.now(tz=pytz.timezone('Asia/Tehran'))
 
 class Post(models.Model):
-    ch = [('p10', "post 10"), ("p11", "post 11")]
-    title = models.CharField(max_length=20, choices=ch)
+    title = models.CharField(max_length=20)
     content = models.TextField()
     date_posted = models.DateTimeField(default=timenow, help_text="تاریخ الان")
     author = models.ForeignKey(User, on_delete=models.CASCADE)

@@ -9,7 +9,8 @@ from django.contrib.auth.models import User
 import os
 from django.contrib.auth import login, authenticate
 from django.urls import reverse_lazy
-
+from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib.auth.views import PasswordChangeView, PasswordResetView
 
 def register(request):
     if request.method == "POST":
@@ -40,12 +41,6 @@ class RegisterView(FormView):
         messages.success(self.request, f'An account is created with username "{username}"')
         return super().form_valid(self)
 
-    def form_invalid(self,form):
-        # print(str(form.errors))
-        if 'unique' in str(form.errors):
-            print('hello wordl')
-            messages.error(self.request, f"نام کاربری {self.request.POST.get('username')} گرفته شده است")
-        return super().form_invalid(form)
 
 @login_required
 def profile(request):
@@ -70,3 +65,16 @@ def profile(request):
 
 def re_home(request):
     return redirect('blog-home')
+
+
+class PasswordChange(SuccessMessageMixin, PasswordChangeView):
+    success_url = reverse_lazy('users-profile')
+    template_name='Users/chpassword.html'
+    success_message = "Password changed successfully!"
+
+
+class PasswordReset(SuccessMessageMixin, PasswordResetView):
+    success_url = reverse_lazy('users-login')
+    template_name='Users/password-reset.html'
+    success_message = "Reset request sent to your email!"
+    html_email_template_name = 'Users/reset-email.html'
